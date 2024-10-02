@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MY_BANK - Login</title>
+    <link rel="stylesheet" href="./bank.html">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-4 col-md-6 col-sm-8 bg-body-tertiary border border-5 text-center p-4">
+                <h2 class="mt-3 mb-4">MY_BANK</h2>
+                <div class="mb-3">
+                    <input type="text" placeholder="Account Number" id="acc" required class="form-control">
+                </div>
+                <div class="mb-3">    
+                    <input type="password" placeholder="Password" id="pass" required class="form-control">
+                </div>
+                <button id="login" class="btn btn-primary w-100 mb-3">Login</button>
+                <button class="btn btn-outline-primary w-100" onclick="signup()">Sign Up</button>
+            </div>
+        </div>
+    </div>
+    
+
+
+    <script>
+        
+// login form
+// Login functionality
+let loginBtn = document.getElementById("login");
+loginBtn.addEventListener("click", () => {
+    let accountnumber = document.getElementById("acc").value; 
+    let password = document.getElementById('pass').value; 
+
+    // Checking localStorage for account number
+    let accountDetails = JSON.parse(localStorage.getItem(accountnumber));
+    console.log(accountDetails); //check working
+
+    if (accountDetails && accountDetails.password === password) {
+        alert(`Welcome <=${accountDetails.username}=> have a nice day!`);
+        window.location = "./bank.html"; // Redirect to bank page
+        
+    } else {
+        alert("Invalid username or password");
+        // clear input
+        document.getElementById("acc").value = ""; 
+        document.getElementById("pass").value = ""; 
+    }
+});
+
+
+
+    </script>
+</body>
+</html>
